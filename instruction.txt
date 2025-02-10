@@ -1,0 +1,18 @@
+The file has been build with docker container. so first thing i did when i want to install new packages is to add to the docker file
+The commando to build is:
+docker build -t python35-project .
+
+To run the default file (my_demo.py) is:
+docker run --rm python35-project
+
+To run a specific file is:
+docker run --rm -v $(pwd):/app -w /app python35-project python specific_file.py
+
+To run a specific file and enable the display function (in order to see the plots) is:
+xhost +local:docker
+and then:
+docker run --rm -e DISPLAY=$DISPLAY \
+    -v /tmp/.X11-unix:/tmp/.X11-unix \
+    -v $(pwd):/app \
+    -w /app \
+    python35-project python my_demo_load.py
